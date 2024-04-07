@@ -1,0 +1,21 @@
+
+
+services:
+  app:
+    image: service:v1
+    container_name: service_runner
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=app_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./data:/var/lib/postresql/data
+
